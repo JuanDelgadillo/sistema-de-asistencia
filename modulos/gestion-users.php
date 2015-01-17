@@ -3,7 +3,7 @@
 include_once "../config/conection.php";
 
 session_start();
-
+$lengpass = "&lowast;";
 if(! isset($_SESSION['user']))
 {
   header("Location:../");
@@ -197,7 +197,7 @@ table tr td {
             <th style="text-align:center;">Usuario</th>
             <th style="text-align:center;">Contraseña</th>
             <th style="text-align:center;">Tipo de usuario</th>
-            <th style="text-align:center;">Operación</th>
+            <th style="text-align:center;">Operaciones</th>
           </tr>
           <?php
 
@@ -205,6 +205,7 @@ table tr td {
 
           while ($row = mysql_fetch_assoc($usuarios))
           {
+            $contrasena = strlen($row['password']);
             if($row['rol'] == 1) $rol = "Administrador(a)";
              elseif ($row['rol'] == 2) $rol = "Docente";
              elseif ($row['rol'] == 3) $rol = "Administrativo(a)";
@@ -212,9 +213,9 @@ table tr td {
           ?>
           <tr>
             <td style="text-align:center;"><?=$row['user']?></td>
-            <td style="text-align:center;"><?=$row['password']?></td>
+            <td style="text-align:center;"><?php for($i=0; $i < $contrasena; $i ++)    echo $lengpass; ?></td>
             <td style="text-align:center;"><?=$rol?></td>
-            <td style="text-align:center;"><a href="">Actualizar</a> - <a href="">Eliminar</a></td>
+            <td style="text-align:center;"><?php if($row['id_user'] != 1){ ?><a href="user.php?op=update-user&id=<?=$row['id_user']?>">Actualizar</a> - <a href="../procesos/delete.php?id=<?=$row['id_user']?>&tipo=user">Eliminar</a> <?php }?></td>
           </tr>
          <?php } ?>
         </table>

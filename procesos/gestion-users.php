@@ -19,19 +19,19 @@ if(isset($_POST['aceptar']))
         {
             $data = mysql_fetch_assoc(mysql_query("SELECT * FROM users WHERE id_user = '".$id."' "));
             $update = mysql_query("UPDATE users SET user = '$user', password = '$password', rol = '$rol' WHERE id_user = '$id' ");
-            $_SESSION['menssage'] = "Los Datos se Actualizaron Satisfactoriamente";
+            $_SESSION['menssage'] = "Los datos se actualizaron satisfactoriamente";
             auditoria($_SESSION['user'],$_SESSION['rol'],"Actualizo los datos del usuario: ".$data['user']);
-            $location = "Location:../modulos/user.php?op=registered-users";
+            $location = "Location:../modulos/gestion-users.php";
         }
         else
         {
             $new_user = mysql_query("INSERT INTO users (user, password, rol) VALUES ('$user','$password','$rol') ");
             $_SESSION['menssage'] = "El usuario ha sido Registrado Satisfactoriamente";
             $location = "Location:../modulos/user.php?op=new-user"; 
-            if($rol == 1)
-                $privilegio = "Administrador(a)";
-            else
-                $privilegio = "Docente";
+            if($rol == 1) $privilegio = "Administrador(a)";
+            elseif($rol == 2) $privilegio = "Docente";
+            elseif($rol == 3) $privilegio = "Administrativo(a)";
+            elseif($rol == 4) $privilegio = "Obrero(a)";
             auditoria($_SESSION['user'],$_SESSION['rol'],"Registro a un nuevo usuario de nombre: ".$user." con el privilegio: ".$privilegio);
         }
     }
@@ -39,7 +39,7 @@ if(isset($_POST['aceptar']))
     {
         $_SESSION['menssage'] = "Ya existe un usuario con el nombre: ".$user." intente nuevamente con uno diferente.";
         auditoria($_SESSION['user'],$_SESSION['rol'],"Intento registrar un usuario de nombre: ".$user." ya existente en el sistema.");
-        $location = "Location:../modulos/user.php?op=new-user";
+        $location = "Location:../modulos/user.php?op=update-user";
         if(isset($_POST['id'])) $location.="&id=".$_POST['id'];
     }
 

@@ -11,9 +11,9 @@ if(! isset($_SESSION['user']))
 }
 
 
-if(isset($_GET['op']) && ! empty($_GET['op']) && $_GET['op'] == "new-user")
+if(isset($_GET['op']) && ! empty($_GET['op']) && $_GET['op'] == "update-user")
 {
-  $titulo = "Nuevo Usuario"; 
+  $titulo = "Actualizar usuario"; 
 }
 elseif(isset($_GET['op']) && ! empty($_GET['op']) && $_GET['op'] == "registered-users")
 {
@@ -172,20 +172,55 @@ else
 <div class="contact" id="contact">
     <br/><br/>
     <div class="wrap">
-        <h2>Perfil de usuario</h2>
+        <h2><?=$titulo?></h2>
         <div class="section group">
               <div class="col span_2_of_3">
                   <div class="contact-form">
+                    <?php
+                    if($titulo == "Actualizar usuario"){
+          if(isset($_GET['id']) && ! empty($_GET['id']) && $_GET['id'] != "")
+          {
+            $registro = $_GET['id'];
+            $student = mysql_fetch_assoc(mysql_query("SELECT * FROM users WHERE id_user = '$registro' "));
+          }
+         ?>
+
+        <form id="singup-inventario" method="POST" action="../procesos/gestion-users.php">
+            <input type="text" class="textbox" name="user" value="<? if(isset($student)){ echo $student['user']; } ?>" placeholder="Usuario" required />
+            <input type="password" name="password" class="textbox" value="<? if(isset($student)){ echo base64_decode($student['password']); } ?>" placeholder="Contraseña" required />
+
+            <div class="clear"> </div>
+            <div class="clear"> </div>
+              <select name="rol" required>
+                <option value="">- Privilegio Administrativo -</option>
+                <option <? if(isset($student) && $student['rol'] == 1){ echo "SELECTED"; } ?> value="1">Administrador(a)</option>
+                <option <? if(isset($student) && $student['rol'] == 2){ echo "SELECTED"; } ?> value="2">Docente</option>
+                <option <? if(isset($student) && $student['rol'] == 3){ echo "SELECTED"; } ?> value="3">Administrativo(a)</option>
+                <option <? if(isset($student) && $student['rol'] == 4){ echo "SELECTED"; } ?> value="4">Obrero(a)</option>
+              </select>
+            </p>
+
+            <?php if(isset($student)){ ?>
+            <input type="hidden" name="id" value="<?=$student['id_user']?>" />
+            <?php } ?>
+
+            <div class="clear"> </div>
+            <div class="clear"> </div>
+            
+            <span><input class="submit" type="submit" name="aceptar" value="Actualizar" /></span>
+        </form>
+        <?php }else{ ?>
                       <form method="post" action="../procesos/update-user.php">
                             
-                                <input type="text" name="user" class="textbox" value="<?=$_SESSION['user']?>" placeholder="Usuario">
-                                <input type="password" name="password" class="textbox" value="<?=base64_decode($row['password'])?>" placeholder="Contraseña">
+                                <input type="text" name="user" class="textbox" value="<?=$_SESSION['user']?>" required placeholder="Usuario">
+                                <input type="password" name="password" class="textbox" required value="<?=base64_decode($row['password'])?>" placeholder="Contraseña">
                                 <input type="hidden" name="id" value="<?=$_SESSION['id_user']?>">
                                 <div class="clear"> </div>
                                 <div class="clear"> </div>
                           <span><input type="submit" name="update" value="Aceptar"></span>
                           <div class="clear"></div>
                         </form>
+                        <?php } ?>
                   </div>
                 </div>
                  <div class="clear"></div>
