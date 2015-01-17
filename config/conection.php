@@ -13,6 +13,8 @@ function auditoria($usuario,$rol,$operation)
     {
        if($rol == 1) $rol = "Administrador(a)";
        elseif ($rol == 2) $rol = "Docente";
+       elseif ($rol == 3) $rol = "Administrativo(a)";
+       elseif ($rol == 4) $rol = "Obrero(a)";
        $auditoria = mysql_query("INSERT INTO auditoria (usuario, tipo_usuario, operacion, fecha) VALUES ('$usuario', '$rol', '".$operation."', NOW() ) ");
     }
 

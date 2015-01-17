@@ -227,7 +227,7 @@ if(isset($_SESSION['user']) && $_SESSION['rol'] == 1)
 			<div class="hide">	
 			<div class="portfolio web" data-cat="web">
 				<div class="portfolio-wrapper">						
-					<a class="popup-with-zoom-anim" href="#small-dialog1">
+					<a href="modulos/gestion-users.php">
 						<ul class="ch-grid">
 							<li>
 								<div class="ch-item ch-img-3">
@@ -245,7 +245,7 @@ if(isset($_SESSION['user']) && $_SESSION['rol'] == 1)
 			
 			<div class="portfolio card" data-cat="card">
 				<div class="portfolio-wrapper">			
-					<a class="popup-with-zoom-anim" href="#small-dialog1">
+					<a href="modulos/auditoria.php">
 						<ul class="ch-grid">
 							<li>
 								<div class="ch-item ch-img-4">
@@ -272,7 +272,7 @@ if(isset($_SESSION['user']) && $_SESSION['rol'] == 1)
 </div>
 <?php  
 }
-elseif(isset($_SESSION['user']) && $_SESSION['rol'] == 2)
+elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 {
   ?>
   <script type="text/javascript">
