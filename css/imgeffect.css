@@ -3,7 +3,7 @@
 	height: 100%;
 	border-radius: 50%;
 	position: relative;
-	cursor: default;
+	cursor: pointer;
 		
 	-webkit-transition: all 0.9s ease-in-out;
 	-moz-transition: all 0.9s ease-in-out;
@@ -21,10 +21,10 @@
 }
 
 .ch-img-3 { 
-	background-image: url(../images/icon3.png);
+	background-image: url(../images/icon4.png);
 }
 .ch-img-4 { 
-	background-image: url(../images/icon4.png);
+	background-image: url(../images/icon3.png);
 }
 
 .ch-img-5{ 

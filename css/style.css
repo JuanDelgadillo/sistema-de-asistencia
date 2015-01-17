@@ -76,6 +76,12 @@ body {
 	color: #ffffff;
 	background: #1bbc9b;
 }
+
+.nav > ul > .close > a:hover 
+{
+	color: #ffffff;
+	background: #ED4545;
+}
 /************end-nav***********/
 /* start slider */
 .slider_bg{
@@ -1258,7 +1264,7 @@ form:after {
 	z-index: -2;
 }
 #login form { margin: 0 20px; position: relative }
-#login form input[type="email"],
+#login form input[type="text"],
 #login form input[type="password"] {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -1283,7 +1289,7 @@ form:after {
 	padding: 15px 10px 15px 40px;
 	width: 80%;
 }
-#login form input[type="email"]:focus,
+#login form input[type="text"]:focus,
 #login form input[type="password"]:focus {
 	-webkit-box-shadow: 0 0 5px #ed1c24 inset;
 	-moz-box-shadow: 0 0 5px #ed1c24 inset;
@@ -1294,7 +1300,7 @@ form:after {
 	border: 1px solid #b03535;
 	outline: none;
 }
-#login form input[type="email"]:focus:required:valid,
+#login form input[type="text"]:focus:required:valid,
 #login form input[type="password"]:focus:required:valid {
 	box-shadow: 0 0 5px #5cd053;
 	border-color: #28921f;

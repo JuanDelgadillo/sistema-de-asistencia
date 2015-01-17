@@ -1,3 +1,10 @@
+<?php  
+
+include_once "config/conection.php";
+
+session_start();
+
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -100,10 +107,19 @@
 							<!----start-nav------ -->	
 							<div class="nav">
 								<ul>
-								   <li class="active"><a href="#home" class="scroll">Inicio</a></li>
-								   <li><a href="#portfolio" class="scroll">Portafolio</a></li>
-								   <li><a href="#about" class="scroll">Acerca</a></li>
-								   <li><a href="#contact" class="scroll">Contacto</a></li>
+								   <li class="active"><a href="./" >Inicio</a></li>
+								   <?php  
+
+            if(isset($_SESSION['user']))
+            {
+              ?>
+								   <li><a href="">Registro</a></li>
+								   <li><a href="modulos/user.php" ><?=$_SESSION['user']?></a></li>
+								   <li class="close"><a href="" >Cerrar sesión</a></li>
+			<?
+            }
+
+            ?>
 								 <div class="clear"> </div>
 								 </ul>
 							</div>
@@ -117,6 +133,11 @@
 <div class="slider_bg">
 		<div class="wrap">
 				<!---start-da-slider--- -->
+<?php  
+
+if(! isset($_SESSION['user']))
+{
+  ?>
 						<div class="da-slide">
 								<h2><span>Control de acceso</span></h2>
 								<!--
@@ -125,52 +146,57 @@
 									<a href="#portfolio" class="scroll"><span class="da-img"> </span> </a>
 								-->
 				<section id="login">
-				<form method="POST" action="http://localhost/emails/public/login" accept-charset="UTF-8">
+				<form method="POST" action="procesos/login.php" accept-charset="UTF-8">
 				<h1> Iniciar sesión </h1>
 				<div>
-				<input id="username" placeholder="Usuario" autocomplete="off" required="required" name="email" type="email">
+				<input id="username" placeholder="Usuario" autocomplete="off" required="required" name="user" type="text">
 			</div>
 			<div>
-				<input id="password" placeholder="Contrase&ntilde;a" required="required" name="password" type="password" value="">
+				<input id="password" placeholder="Contrase&ntilde;a" required="required" name="contrasena" type="password" value="">
 			</div>
 			<div>
-				<input type="submit" value="Iniciar Sesi&oacute;n">
+				<input type="submit" name="ingresar" value="Iniciar Sesi&oacute;n">
 				<a href="#">&iquest;Olvidaste tu contrase&ntilde;a?</a>
 				<a href="#">Registrarse</a>
 			</div>
 		</form><!-- form -->
 	</section>
-								</div>
+				</div>
 				<!---//End-da-slider--- -->
+ <?
+}
+
+?>						
+
 		</div>
 </div>
 <!-----end-slider------ -->
-<!--start portfolio---- 
+<!--start portfolio---- -->
 	<div class="wrap" id="portfolio">
 				<div class="main">
-					<!-- start gallery  
+					<!-- start gallery  -->
 							<div class="gallery1">
-					<!--start-mfp 
+					<!--start-mfp -->
 						<div id="small-dialog1" class="mfp-hide">
 							<div class="pop_up">
 								<h2>Lorem ipsum sit amet</h2>
-								<img src="images/icon1.png" alt=""/>
+								<img style="margin-left:25%;" src="images/icon1.png" alt=""/>
+								<p class="para">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+							</div>
+						</div>
+						<div id="small-dialog2" class="mfp-hide">
+							<div class="pop_up">
+								<h2>Lorem ipsum sit amet 2</h2>
+								<img style="margin-left:25%;" src="images/icon1.png" alt=""/>
 								<p class="para">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
 							</div>
 						</div>
 					<!--end-mfp -->	
-			<!---start-content--- 
+			<!---start-content--- -->
 			<div class="gallery">
 					<div class="clear"> </div>
 					<div class="container">
-						<h2>Portfolio</h2>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-					<ul id="filters" class="clearfix">
-						<li><span class="filter active" data-filter="app card icon logo web">All</span></li>
-						<li><span class="filter" data-filter="app web">Web Design</span></li>
-						<li><span class="filter" data-filter="icon web card">Graphic Design</span></li>
-						<li><span class="filter" data-filter="web app icon card">Flat Design</span></li>
-					</ul>
+						<h2>Panel de control</h2>
 			<div id="portfoliolist">
 			
 			<div class="portfolio logo" data-cat="logo">
@@ -181,8 +207,7 @@
 								<div class="ch-item ch-img-1">
 									<div class="ch-info">
 										<img src="images/zoom-white.png"/>
-										<h3>Example Title</h3>
-										<p><a href="#">Wed Desing</a></p>
+										<h3>Registro del personal</h3>
 									</div>
 								</div>
 							</li>
@@ -193,14 +218,13 @@
 				
 			<div class="portfolio app" data-cat="app">
 				<div class="portfolio-wrapper">			
-					<a class="popup-with-zoom-anim" href="#small-dialog1">
+					<a class="popup-with-zoom-anim" href="#small-dialog2">
 						<ul class="ch-grid">
 							<li>
 								<div class="ch-item ch-img-2">
 									<div class="ch-info">
 										<img src="images/zoom-white.png"/>
-										<h3>Example Title</h3>
-										<p><a href="#">Wed Desing</a></p>
+										<h3>Reportes</h3>
 									</div>
 								</div>
 							</li>
@@ -217,8 +241,7 @@
 								<div class="ch-item ch-img-3">
 									<div class="ch-info">
 										<img src="images/zoom-white.png"/>
-										<h3>Example Title</h3>
-										<p><a href="#">Wed Desing</a></p>
+										<h3>Gestión de usuarios</h3>
 									</div>
 								</div>
 							</li>
@@ -236,8 +259,7 @@
 								<div class="ch-item ch-img-4">
 									<div class="ch-info">
 										<img src="images/zoom-white.png"/>
-										<h3>Example Title</h3>
-										<p><a href="#">Wed Desing</a></p>
+										<h3>Auditoría</h3>
 									</div>
 								</div>
 							</li>
@@ -245,82 +267,7 @@
 					</a>
 				</div>
 			</div>	
-				
-			<div class="hide">	
-			<div class="portfolio app" data-cat="app">
-				<div class="portfolio-wrapper">
-					<a class="popup-with-zoom-anim" href="#small-dialog1">
-						<ul class="ch-grid">
-							<li>
-								<div class="ch-item ch-img-5">
-									<div class="ch-info">
-										<img src="images/zoom-white.png"/>
-										<h3>Example Title</h3>
-										<p><a href="#">Wed Desing</a></p>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</a>
-				</div>
-			</div>	
-			</div>	
-			<div class="hide">
-			<div class="portfolio card" data-cat="card">
-				<div class="portfolio-wrapper">			
-					<a class="popup-with-zoom-anim" href="#small-dialog1">
-						<ul class="ch-grid">
-							<li>
-								<div class="ch-item ch-img-6">
-									<div class="ch-info">
-										<img src="images/zoom-white.png"/>
-										<h3>Example Title</h3>
-										<p><a href="#">Wed Desing</a></p>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</a>
-				</div>
-			</div>	
-			</div>
-			<div>
-			<div class="portfolio card" data-cat="card">
-				<div class="portfolio-wrapper">			
-					<a class="popup-with-zoom-anim" href="#small-dialog1">
-						<ul class="ch-grid">
-							<li>
-								<div class="ch-item ch-img-7">
-									<div class="ch-info">
-										<img src="images/zoom-white.png"/>
-										<h3>Example Title</h3>
-										<p><a href="#">Wed Desing</a></p>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</a>
-				</div>
-			</div>	
-			</div>
-			<div>
-			<div class="portfolio logo" data-cat="logo" id="hide">
-				<div class="portfolio-wrapper">			
-					<a class="popup-with-zoom-anim" href="#small-dialog1">
-						<ul class="ch-grid">
-							<li>
-								<div class="ch-item ch-img-8">
-									<div class="ch-info">
-										<img src="images/zoom-white.png"/>
-										<h3>Example Title</h3>
-										<p><a href="#">Wed Desing</a></p>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</a>
-				</div>
-			</div>																																							
+																																											
 		</div>
 		</div>
 	</div> <!-- container -->
@@ -329,7 +276,7 @@
 	<div class="clear"> </div>
 	</div>
 	</div>
-	</div>
+	</div><br><br><br><br>
 </div>
 <!---End-gallery--- -->
 <!-----start-about------ 
@@ -474,7 +421,7 @@
      <div class="footer-bottom">
      	<div class="wrap">
         <div class="copy">
-		    <p class="copy">&#169 Desarrollado por: Atencio Adrian, Sanchez Richard, Gonzalez Adrian, Zambrano Ezequiel 2015</p>
+		    <p class="copy">&#169 Desarrollado por: Atencio Adrian, Sanchez Richard, Gonzalez Adrian y Zambrano Ezequiel 2015</p>
 		</div>
 		<script type="text/javascript">
 							$(document).ready(function() {
@@ -495,5 +442,20 @@
 		 <script src="js/jquery.scrollTo.js"></script>
 		</div>
 	</div>
+<?php 
+
+if(isset($_SESSION['menssage']) && $_SESSION['menssage'] != "")
+{
+
+  printf("<script type='text/javascript' language='javascript'>
+
+  alert('".$_SESSION['menssage']."');
+
+    </script>");
+
+  unset($_SESSION['menssage']);
+}
+
+ ?>
 </body>
 </html>
