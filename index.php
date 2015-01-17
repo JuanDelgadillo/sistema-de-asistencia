@@ -18,6 +18,7 @@ session_start();
 <!-- start gallery Script -->
 	<script type="text/javascript" src="js/jquery.easing.min.js"></script>	
 	<script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+	<script type="text/javascript" src="js/hms.js"></script>
 				<script type="text/javascript">
 				$(function () {
 					
@@ -113,9 +114,8 @@ session_start();
             if(isset($_SESSION['user']))
             {
               ?>
-								   <li><a href="">Registro</a></li>
 								   <li><a href="modulos/user.php" ><?=$_SESSION['user']?></a></li>
-								   <li class="close"><a href="" >Cerrar sesión</a></li>
+								   <li class="close"><a href="procesos/salir.php" >Cerrar sesión</a></li>
 			<?
             }
 
@@ -171,26 +171,18 @@ if(! isset($_SESSION['user']))
 		</div>
 </div>
 <!-----end-slider------ -->
+<?php  
+
+if(isset($_SESSION['user']) && $_SESSION['rol'] == 1)
+{
+  ?>
 <!--start portfolio---- -->
 	<div class="wrap" id="portfolio">
 				<div class="main">
 					<!-- start gallery  -->
 							<div class="gallery1">
 					<!--start-mfp -->
-						<div id="small-dialog1" class="mfp-hide">
-							<div class="pop_up">
-								<h2>Lorem ipsum sit amet</h2>
-								<img style="margin-left:25%;" src="images/icon1.png" alt=""/>
-								<p class="para">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
-							</div>
-						</div>
-						<div id="small-dialog2" class="mfp-hide">
-							<div class="pop_up">
-								<h2>Lorem ipsum sit amet 2</h2>
-								<img style="margin-left:25%;" src="images/icon1.png" alt=""/>
-								<p class="para">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
-							</div>
-						</div>
+						
 					<!--end-mfp -->	
 			<!---start-content--- -->
 			<div class="gallery">
@@ -278,6 +270,105 @@ if(! isset($_SESSION['user']))
 	</div>
 	</div><br><br><br><br>
 </div>
+<?php  
+}
+elseif(isset($_SESSION['user']) && $_SESSION['rol'] == 2)
+{
+  ?>
+  <script type="text/javascript">
+
+  window.addEventListener('load',function(){
+  	hmsg();
+  },false);
+
+  </script>
+  				<div id="small-dialog1" class="mfp-hide">
+							<div class="pop_up">
+								<h2>Registrar entrada</h2>
+								<img style="margin-left:25%;" src="images/icon1.png" alt=""/>
+								<p class="para">Hora:  <span id="hmsg"></span></p>
+							</div>
+						</div>
+						<div id="small-dialog2" class="mfp-hide">
+							<div class="pop_up">
+								<h2>Registrar Salida</h2>
+								<img style="margin-left:25%;" src="images/icon1.png" alt=""/>
+								<p class="para">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+							</div>
+						</div>
+<div class="wrap" id="portfolio">
+				<div class="main">
+					<!-- start gallery  -->
+							<div class="gallery1">
+						<div class="gallery">
+					<div class="clear"> </div>
+					<div class="container">
+						<h2>Control de asistencia</h2>
+			<div id="portfoliolist">
+			
+			<div class="portfolio logo" data-cat="logo">
+				<div class="portfolio-wrapper">				
+					<a class="popup-with-zoom-anim" href="#small-dialog1">
+						<ul class="ch-grid">
+						</ul>
+					</a>
+				</div>
+			</div>		
+				
+			<div class="portfolio app" data-cat="app">
+				<div class="portfolio-wrapper">			
+					<a class="popup-with-zoom-anim" href="#small-dialog1">
+						<ul class="ch-grid">
+							<li>
+								<div class="ch-item ch-img-1">
+									<div class="ch-info">
+										<img src="images/zoom-white.png"/>
+										<h3>Registrar entrada</h3>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</a>
+				</div>
+			</div>	
+			<div class="hide">	
+			<div class="portfolio web" data-cat="web">
+				<div class="portfolio-wrapper">						
+					<a class="popup-with-zoom-anim" href="#small-dialog2">
+						<ul class="ch-grid">
+							<li>
+								<div class="ch-item ch-img-4">
+									<div class="ch-info">
+										<img src="images/zoom-white.png"/>
+										<h3>Registrar salida</h3>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</a>
+				</div>
+			</div>	
+			</div>
+			
+			<div class="portfolio card" data-cat="card">
+				<div class="portfolio-wrapper">			
+					<a class="popup-with-zoom-anim" href="#small-dialog1">
+						<ul class="ch-grid">
+						</ul>
+					</a>
+				</div>
+			</div>	
+																																											
+		</div>
+		</div>
+		<script type="text/javascript" src="js/fliplightbox.min.js"></script>
+	<script type="text/javascript">$('body').flipLightBox()</script>
+	<div class="clear"> </div>
+	</div>
+	</div>
+	</div><br><br><br><br>
+</div>
+<?php } ?>
 <!---End-gallery--- -->
 <!-----start-about------ 
 

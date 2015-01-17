@@ -25,7 +25,7 @@ if(isset($_POST['ingresar']))
     }
     else
     {
-        $_SESSION['menssage'] = "El Usuario Ingresado no Existe en el Sistema";
+        $_SESSION['menssage'] = "El usuario ingresado no existe en el sistema";
         header("Location:../");
     }
 }
