@@ -293,7 +293,7 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] == 2)
 							<div class="pop_up">
 								<h2>Registrar Salida</h2>
 								<img style="margin-left:25%;" src="images/icon1.png" alt=""/>
-								<p class="para">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+								<p class="para">Hora:  <span id="hmsg"></span></p>
 							</div>
 						</div>
 <div class="wrap" id="portfolio">
