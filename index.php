@@ -104,6 +104,7 @@ session_start();
 							<div class="logo">
 								<a href="./"><img src="images/logo.png" width="222px" height="58px" alt="" /></a>
 							</div>	
+							<span id="titulo">U. E. Gabriela Mistral</span>
 							<!--------end-logo------- -->
 							<!----start-nav------ -->	
 							<div class="nav">
@@ -156,8 +157,6 @@ if(! isset($_SESSION['user']))
 			</div>
 			<div>
 				<input type="submit" name="ingresar" value="Iniciar Sesi&oacute;n">
-				<a href="#">&iquest;Olvidaste tu contrase&ntilde;a?</a>
-				<a href="#">Registrarse</a>
 			</div>
 		</form><!-- form -->
 	</section>
@@ -370,145 +369,6 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 </div>
 <?php } ?>
 <!---End-gallery--- -->
-<!-----start-about------ 
-
-<div class="about" id="about">
-	<div class="wrap">
-	<h2>About US</h2>
-	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-		<div class="about-grids">
-			<div class="grid">
-				<div class="dc_zoom_css">
-				<span class="roll_css6">
-					<div class="social">
-						<ul>
-							<li><a class="sharefacebook" href="#"> </a> </li>
-							<li><a class="sharetwitter" href="#"> </a> </li>
-							<li><a class="sharetgoogle" href="#"> </a> </li>
-							<li><a class="sharedrible" href="#"> </a> </li>
-							<div class="clear"> </div>
-						</ul>
-					</div>
-				</span>
-				<img class="post-person" src="images/img1.jpg">
-				</div>
-				<div class="desc">
-					<h3>Lorem Ipsum is Simply</h3>
-					<p>project manager</p>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Sed ut perspiciatis unde omnis iste natus error sit voluptatem,Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
-				</div>
-		
-			</div>
-			<div class="grid">
-				<div class="dc_zoom_css">
-				<span class="roll_css6">
-					<div class="social">
-						<ul>
-							<li><a class="sharefacebook" href="#"> </a> </li>
-							<li><a class="sharetwitter" href="#"> </a> </li>
-							<li><a class="sharetgoogle" href="#"> </a> </li>
-							<li><a class="sharedrible" href="#"> </a> </li>
-							<div class="clear"> </div>
-						</ul>
-					</div>
-				</span>
-				<img class="post-person" src="images/img2.jpg">
-				</div>
-				<div class="desc">
-					<h3>Lorem Ipsum is Simply</h3>
-					<p>project manager</p>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Sed ut perspiciatis unde omnis iste natus error sit voluptatem,Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
-				</div>
-			</div>
-			<div class="grid">
-				<div class="dc_zoom_css">
-				<span class="roll_css6">
-					<div class="social">
-						<ul>
-							<li><a class="sharefacebook" href="#"> </a> </li>
-							<li><a class="sharetwitter" href="#"> </a> </li>
-							<li><a class="sharetgoogle" href="#"> </a> </li>
-							<li><a class="sharedrible" href="#"> </a> </li>
-							<div class="clear"> </div>
-						</ul>
-					</div>
-				</span>
-				<img class="post-person" src="images/img3.jpg">
-				</div>
-				<div class="desc">
-					<h3>Lorem Ipsum is Simply</h3>
-					<p>project manager</p>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Sed ut perspiciatis unde omnis iste natus error sit voluptatem,Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
-				</div>
-			</div>
-			<div class="clear"> </div>
-		</div>
-	</div>
-</div>-->
-<!---------end-about----------- 
-<div class="contact" id="contact">
-	<div class="wrap">
-		<h2>Contact Us</h2>
-		<h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
-		<div class="section group">
-			  <div class="col span_2_of_3">
-				  <div class="contact-form">
-				  	  <form method="post" action="#">
-					    	
-					    		<input type="text" class="textbox" value="Your Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your  Name';}">
-						    	<input type="text" class="textbox" value="Your Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Email';}">
-						    	<div class="clear"> </div>
-						   
-						    <div>
-						    	<textarea value="Your Message:" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Message';}">Your Message...</textarea>
-						    </div>
-						  <span><input type="submit" class="" value="Submit"></span>
-						  <div class="clear"></div>
-					    </form>
-				  </div>
-  				</div>
-				<div class="col span_1_of_3">
-					<div class="company_address">
-				     	<h5>INFORMATION</h5>
-						<ul class="list3">
-							<li>
-								<img src="images/location.png" alt=""/>
-								<div class="extra-wrap">
-								  <p>Lorem ipsum  consectetu</p>
-								  <p>12345-Lorem ipsum  consectetu</p>
-								  <p>Lorem ipsum , consectetu</p>
-								</div>
-								<div class="clear"> </div>
-							</li>
-							
-							<li>
-								<img src="images/phone.png" alt=""/>
-								<div class="extra-wrap">
-									<p>+1 800(Phone) 258 2598</p>
-								</div>
-								<div class="clear"> </div>
-							</li>
-							<li>
-								<img src="images/fax2.png" alt=""/>
-								<div class="extra-wrap">
-									<p>+1 500(Tax) 6343 8690</p>
-								</div>
-								<div class="clear"> </div>
-							</li>
-							<li>
-								<img src="images/mail.png" alt=""/>
-								<div class="extra-wrap">
-									<p> <a href="mailto:info@mycompany.com"> info(at)appstore.com</a></p>
-								</div>
-								<div class="clear"> </div>
-							</li>
-						</ul>
-				   </div>
-				 </div>
-				 <div class="clear"></div>
-			  </div>
-			  </div>
-     	</div> -->
      <div class="footer-bottom">
      	<div class="wrap">
         <div class="copy">

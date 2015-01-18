@@ -33,6 +33,11 @@ body {
 	font-size: 100%;
 	background: #ffffff;
 }
+#titulo{
+	font-size:37px;
+	margin:0 0 0 15%;
+	font-weight:bold;
+}
 select{
   padding: 7px;
   font-size:13px;
