@@ -1377,3 +1377,7 @@ form:after {
     margin: 30px 15px 0 0;
     text-decoration: underline;
 }
+
+#hmsg {
+	font-size: 2em;  
+}

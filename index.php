@@ -26,7 +26,7 @@ session_start();
 					
 						init: function () {
 						
-							// MixItUp plugin
+							// MixItUp plugin --- 105 ancho con 90 alto
 							// http://mixitup.io
 							$('#portfoliolist').mixitup({
 								targetSelector: '.portfolio',
@@ -285,15 +285,15 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
   				<div id="small-dialog1" class="mfp-hide">
 							<div class="pop_up">
 								<h2>Registrar entrada</h2>
-								<img style="margin-left:25%;" src="images/icon1.png" alt=""/>
-								<p class="para">Hora:  <span id="hmsg"></span></p>
+								<img style="margin-left:10%;" src="images/default-photo.png" alt=""/>
+								<p class="para"><span id="hmsg"></span></p>
 							</div>
 						</div>
 						<div id="small-dialog2" class="mfp-hide">
 							<div class="pop_up">
 								<h2>Registrar Salida</h2>
-								<img style="margin-left:25%;" src="images/icon1.png" alt=""/>
-								<p class="para">Hora:  <span id="hmsg"></span></p>
+								<img style="margin-left:10%;" src="images/default-photo.png" alt=""/>
+								<p class="para"><span id="hmsg"></span></p>
 							</div>
 						</div>
 <div class="wrap" id="portfolio">
@@ -320,7 +320,7 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 					<a class="popup-with-zoom-anim" href="#small-dialog1">
 						<ul class="ch-grid">
 							<li>
-								<div class="ch-item ch-img-1">
+								<div class="ch-item ch-img-5">
 									<div class="ch-info">
 										<img src="images/zoom-white.png"/>
 										<h3>Registrar entrada</h3>
@@ -337,7 +337,7 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 					<a class="popup-with-zoom-anim" href="#small-dialog2">
 						<ul class="ch-grid">
 							<li>
-								<div class="ch-item ch-img-4">
+								<div class="ch-item ch-img-6">
 									<div class="ch-info">
 										<img src="images/zoom-white.png"/>
 										<h3>Registrar salida</h3>

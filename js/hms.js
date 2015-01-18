@@ -16,7 +16,7 @@ function hmsg()
                          minutes="0"+minutes;
                     if (seconds<=9)
                          seconds="0"+seconds;
-                         myclock=hours+":"+minutes+":"+seconds+" "+dn;
+                         myclock="Hora: "+hours+":"+minutes+":"+seconds+" "+dn;
                     if (document.layers)
                     {
                          document.layers.hmsg.document.write(myclock);
