@@ -1386,3 +1386,9 @@ form:after {
 #hmsg {
 	font-size: 2em;  
 }
+
+ #camara{
+            width: 330px;
+            height: 330px;
+            margin-left:10%;
+        }

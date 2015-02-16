@@ -62,6 +62,7 @@ session_start();
 					
 					
 				});	
+		
 				</script>
 				<!-- Add fancyBox main JS and CSS files -->
 				<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
@@ -79,7 +80,9 @@ session_start();
 									removalDelay: 300,
 									mainClass: 'my-mfp-zoom-in'
 							});
+							
 						});
+
 						</script>
 				<script type="text/javascript" src="js/move-top.js"></script>
 				<script type="text/javascript" src="js/easing.js"></script>
@@ -121,6 +124,7 @@ session_start();
             }
 
             ?>
+            					<li ><a href="./" >Asistencia</a></li>
 								 <div class="clear"> </div>
 								 </ul>
 							</div>
@@ -274,24 +278,19 @@ if(isset($_SESSION['user']) && $_SESSION['rol'] == 1)
 elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 {
   ?>
-  <script type="text/javascript">
+  <script type="text/javascript" src="js/camara.js"></script>
 
-  window.addEventListener('load',function(){
-  	hmsg();
-  },false);
-
-  </script>
   				<div id="small-dialog1" class="mfp-hide">
 							<div class="pop_up">
 								<h2>Registrar entrada</h2>
-								<img style="margin-left:10%;" src="images/default-photo.png" alt=""/>
+								<video id="camara" autoplay></video>
 								<p class="para"><span id="hmsg"></span></p>
 							</div>
 						</div>
 						<div id="small-dialog2" class="mfp-hide">
 							<div class="pop_up">
 								<h2>Registrar Salida</h2>
-								<img style="margin-left:10%;" src="images/default-photo.png" alt=""/>
+								<!-- <video id="camara" autoplay></video>-->
 								<p class="para"><span id="hmsg"></span></p>
 							</div>
 						</div>
@@ -305,7 +304,7 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 						<h2>Control de asistencia</h2>
 			<div id="portfoliolist">
 			
-			<div class="portfolio logo" data-cat="logo">
+			<div class="portfolio logo" data-cat="logo" >
 				<div class="portfolio-wrapper">				
 					<a class="popup-with-zoom-anim" href="#small-dialog1">
 						<ul class="ch-grid">
@@ -315,9 +314,9 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 			</div>		
 				
 			<div class="portfolio app" data-cat="app">
-				<div class="portfolio-wrapper">			
+				<div class="portfolio-wrapper" >			
 					<a class="popup-with-zoom-anim" href="#small-dialog1">
-						<ul class="ch-grid">
+						<ul class="ch-grid" >
 							<li>
 								<div class="ch-item ch-img-5">
 									<div class="ch-info">
