@@ -121,10 +121,11 @@ session_start();
 								   <li><a href="modulos/user.php" ><?=$_SESSION['user']?></a></li>
 								   <li class="close"><a href="procesos/salir.php" >Cerrar sesión</a></li>
 			<?
-            }
+            }else{
 
             ?>
-            					<li ><a href="./" >Asistencia</a></li>
+            					<li ><a href="modulos/asistencia.php" >Asistencia</a></li>
+            					<?php } ?>
 								 <div class="clear"> </div>
 								 </ul>
 							</div>
@@ -196,7 +197,7 @@ if(isset($_SESSION['user']) && $_SESSION['rol'] == 1)
 			
 			<div class="portfolio logo" data-cat="logo">
 				<div class="portfolio-wrapper">				
-					<a class="popup-with-zoom-anim" href="#small-dialog1">
+					<a href="modulos/registro_personal.php">
 						<ul class="ch-grid">
 							<li>
 								<div class="ch-item ch-img-1">
