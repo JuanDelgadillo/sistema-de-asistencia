@@ -140,7 +140,8 @@ table tr td {
                             <!--------start-logo---- -->
                             <div class="logo">
                                 <a href="./"><img src="../images/logo.png" width="222px" height="58px" alt="" /></a>
-                            </div>  
+                            </div>
+                            <span id="titulo">U. E. Gabriela Mistral</span>
                             <!--------end-logo------- -->
                             <!----start-nav------ -->   
                             <div class="nav">

@@ -20,25 +20,15 @@ if(! isset($_SESSION['user']))
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" type="text/css" href="../css/imgeffect.css" />
 <script src="../js/jquery.min.js"></script>
+<script src="../js/fecha.js"></script>
 <style>
-    .contact-form input[type="text"] {
-    padding: 15px;
-    display: block;
-    width: 20%;
-    background:#fff;
-    outline: none;
-    color:#000000;
-    font-size: 0.8125em;
-    -webkit-appearance: none;
-    float:left;
+    .contact-form input[type="text"], .contact-form input[type="email"] {
+    width: 23%;
     margin-right: 2em;
-    font-family: 'Lato', sans-serif;
-    font-style: italic;
-    border: 2px solid #CACACA;
 }
 .contact-form .sexo {
-    width: 23%;
-    margin-left:10%;
+    width: 26%;
+    margin-right: 2em;
 }
 .contact-form input[type="text"]:nth-child(2), .contact-form input[type="password"]:nth-child(2)
 {
@@ -46,6 +36,14 @@ if(! isset($_SESSION['user']))
 }
 .contact-form input[type="text"]:nth-child(1) {
     margin-left:10%;
+}
+select {
+    margin-right: 0em;
+}
+.contact-form form input[type="submit"] 
+{
+    float: right;
+    margin-right: 50%;   
 }
 </style>
 </head>
@@ -58,7 +56,8 @@ if(! isset($_SESSION['user']))
                             <!--------start-logo---- -->
                             <div class="logo">
                                 <a href="./"><img src="../images/logo.png" width="222px" height="58px" alt="" /></a>
-                            </div>  
+                            </div>
+                            <span id="titulo">U. E. Gabriela Mistral</span>
                             <!--------end-logo------- -->
                             <!----start-nav------ -->   
                             <div class="nav">
@@ -84,15 +83,6 @@ if(! isset($_SESSION['user']))
                     </div>
                 </div>
         <!------end-header---------- -->
-        <!-- start slider -->
-<div class="slider_bg">
-        <div class="wrap">
-                <!---start-da-slider--- -->               
-
-        </div>
-</div>
-<!-----end-slider------ -->
-    <div class="clear"> </div>
     </div>
     </div>
     </div>
@@ -101,52 +91,130 @@ if(! isset($_SESSION['user']))
 
 <!---------end-about----------- -->
 <div class="contact" id="contact">
-    <br/><br/>
+    <script>
+
+    window.addEventListener('load',function(){
+        var loads_attributes = function(fields, methods, value)
+        {
+            for(x in fields)
+            {
+                field = eval(fields[x]);
+                if(methods == 'required')
+                    field.required = value;
+                else if(methods == 'display')
+                    field.style.display = value;
+
+            }
+        }
+
+        categoria.addEventListener('change',function(){
+            var textos_administrativo = Array('especialidad_texto','area_texto');
+            var campos_administrativo = Array('especialidad_campo','area_campo');
+            var textos_docente = Array('especialidad_texto','asignatura_texto');
+            var campos_docente = Array('especialidad_campo','asignatura_campo');
+            var textos_obrero = Array('area_texto');
+            var campos_obrero = Array('area_campo');
+
+            if(categoria.value == "Administrativo")
+            {   
+                loads_attributes(campos_administrativo, 'required', true);
+                loads_attributes(['asignatura_texto','asignatura_campo'], 'required', false);
+                loads_attributes(textos_administrativo, 'display', 'inline');
+                loads_attributes(campos_administrativo, 'display', 'inline');
+                loads_attributes(['asignatura_texto','asignatura_campo'], 'display', 'none');
+            }
+            else if(categoria.value == "Docente")
+            {
+                loads_attributes(campos_docente, 'required', true);
+                loads_attributes(['area_texto','area_campo'], 'required', false);
+                loads_attributes(textos_docente, 'display', 'inline');
+                loads_attributes(campos_docente, 'display', 'inline');
+                loads_attributes(['area_texto','area_campo'], 'display', 'none');
+            }
+            else if(categoria.value == "Obrero")
+            {
+                loads_attributes(campos_obrero, 'required', true);
+                loads_attributes(textos_obrero, 'display', 'inline');
+                loads_attributes(campos_obrero, 'display', 'inline');
+                loads_attributes(['especialidad_texto','especialidad_campo','asignatura_texto','asignatura_campo'], 'display', 'none');
+                loads_attributes(['especialidad_texto','especialidad_campo','asignatura_texto','asignatura_campo'], 'required', false);
+            }
+            else
+            {
+                loads_attributes(['especialidad_texto','especialidad_campo','asignatura_texto','asignatura_campo','area_texto','area_campo'], 'display', 'none');
+            }
+
+        },false);
+    },false);
+
+    </script>
     <div class="wrap">
         <h2>Registro del personal</h2>
         <div class="section group">
                   <div class="contact-form">
-    <style>
-    
-    label{
-        border: 1px solid black;
-        display:inline;
-    }
-
-    </style>
-        <form id="singup-inventario" method="POST" action="../procesos/gestion-users.php">
-            <label for="full_name">Cedula</label>
-            <input type="text" class="form-control" name="cedula" value="" placeholder="Cedula" required />
-            <input type="text" class="form-control" name="nombre" class="textbox" value="" placeholder="Nombre" required />
-            <input type="text" class="form-control" name="apellido" class="textbox" value="" placeholder="Apellido" required />
+        <form name="singup_inventario" method="POST" action="../procesos/registro_personal.php">
+            <p class="titulos"><span>Cedula</span> <span style="margin-left:23.8%;">Nombre</span><span style="margin-left:23.3%;">Apellido</span></p>
+            <input type="text" name="cedula" value="" placeholder="Cedula" required />
+            <input type="text" name="nombre" class="textbox" value="" placeholder="Nombre" required />
+            <input type="text" name="apellido" class="textbox" value="" placeholder="Apellido" required />
 
             <div class="clear"> </div>
             <div class="clear"> </div>
+            <p class="titulos"><span>Sexo</span> <span style="margin-left:25%;">Fecha de Nacimiento</span><span style="margin-left:15%;">Categoría</span></p>
               <select class="sexo" name="sexo" required>
                 <option value="">- Sexo -</option>
                 <option value="Hombre">Hombre</option>
                 <option value="Mujer">Mujer</option>
               </select>
-            <select style="width: 75px;" name="dia_nac" required>
+            <select style="width:7%;" name="dia_nac" required>
                                     <option value=" ">D&iacute;a</option>
                                 </select>
 
-                                <select style="width: 120px;" name="mes_nac" onchange="d_m_fnac();" required>
-                                    <option value="0" >Mes</option>
-                                    <option value="1"  >Enero</option>
-                                    <option value="2"  >Febrero</option>
-                                    <option value="3"  >Marzo</option>
-                                    <option value="4"  >Abril</option>
-                                    <option value="5"  >Mayo</option>
-                                    <option value="6"  >Junio</option>
-                                    <option value="7"  >Julio</option>
-                                    <option value="8"  >Agosto</option>
-                                    <option value="9"  >Septiembre</option>
-                                    <option value="10"  >Octubre</option>
-                                    <option value="11"  >Noviembre</option>
-                                    <option value="12"  >Diciembre</option></select>
-
-           
+                                <select style="width:12%;" name="mes_nac" onchange="d_m_fnac();" required>
+                                    <option value="0">Mes</option>
+                                    <option value="1">Enero</option>
+                                    <option value="2">Febrero</option>
+                                    <option value="3">Marzo</option>
+                                    <option value="4">Abril</option>
+                                    <option value="5">Mayo</option>
+                                    <option value="6">Junio</option>
+                                    <option value="7">Julio</option>
+                                    <option value="8">Agosto</option>
+                                    <option value="9">Septiembre</option>
+                                    <option value="10">Octubre</option>
+                                    <option value="11">Noviembre</option>
+                                    <option value="12">Diciembre</option></select>
+                                <select style="width:7%;margin-right: 2em;" name="ano_nac" onchange="d_m_fnac();" required>
+                                    <option value="">Año</option>
+                                    <?php for($x = 2015; $x > 1940; $x--){ ?>
+                                    <option value="<?=$x?>" ><?=$x?></option>
+                                    <?php } ?>
+                                </select>
+                    <select class="sexo" id="categoria" name="categoria" required>
+                <option value="">- Categoría -</option>
+                <option value="Administrativo">Administrativo</option>
+                <option value="Docente">Docente</option>
+                <option value="Obrero">Obrero</option>
+              </select>
+            <div class="clear"> </div>
+            <div class="clear"> </div>
+           <p class="titulos"><span>Turno</span><span style="margin-left:24.8%;">Grado de instrucción</span><span style="margin-left:15%;display:none;" id="area_texto">Área</span><span id="asignatura_texto"  style="margin-left:15%;display:none;">Asignatura</span></p>
+           <select class="sexo" name="turno" required>
+                <option value="">- Turno -</option>
+                <option value="Mañana">Mañana</option>
+                <option value="Tarde">Tarde</option>
+              </select>
+            <input type="text" name="grado_instruccion" value="" placeholder="Grado de instruccion" required />
+              <input type="text" id="area_campo" style="display:none;" name="area" value="" placeholder="Área" required />
+            <input type="text" name="asignatura"  style="display:none;" id="asignatura_campo" value="" placeholder="Asignatura" required />
+            
+            <div class="clear"> </div>
+            <div class="clear"> </div>
+            <p class="titulos"><span id="especialidad_texto" style="display:none;">Especialidad</span></p>
+              <input type="text" name="especialidad"  style="display:none;" id="especialidad_campo" value="" placeholder="Especialidad" required />
+              
+              
+            
             <div class="clear"> </div>
             <div class="clear"> </div>
             
@@ -157,7 +225,6 @@ if(! isset($_SESSION['user']))
               </div>
               </div>
         </div>
-        <br/><br/><br/><br/>
      <div class="footer-bottom">
         <div class="wrap">
         <div class="copy">

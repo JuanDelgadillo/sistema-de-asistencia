@@ -87,7 +87,7 @@ if(isset($_SESSION['user']))
         <div class="section group">
               <div class="col span_2_of_3">
                   <div class="contact-form">
-                      <form method="post" action="../procesos/update-user.php">
+                      <form method="post" action="">
                             
                                 <input type="number" name="cedula" class="textbox" value="" required placeholder="Ingresa tu cedula">
                                 <div class="clear"> </div>
