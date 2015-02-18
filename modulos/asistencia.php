@@ -9,6 +9,19 @@ if(isset($_SESSION['user']))
   header("Location:../");
 }
 
+if(isset($_SESSION['proceso']) && $_SESSION['proceso'] == "Entrada")
+{
+  $titulo = "Registrar asistencia de entrada";
+}
+elseif(isset($_SESSION['proceso']) && $_SESSION['proceso'] == "Salida")
+{
+  $titulo = "Registrar asistencia de salida";
+}
+else
+{
+  $titulo = "Control de asistencia";
+}
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -83,11 +96,20 @@ if(isset($_SESSION['user']))
 <div class="contact" id="contact">
     <br/><br/>
     <div class="wrap">
-        <h2>Control de asistencia</h2>
+        <h2><?=$titulo?></h2>
         <div class="section group">
               <div class="col span_2_of_3">
                   <div class="contact-form">
-                      <form method="post" action="">
+                    <?php if(isset($_SESSION['proceso']) && $_SESSION['proceso'] == "Entrada")
+                    { ?>
+                      
+                        <?php }
+                        elseif(isset($_SESSION['proceso']) && $_SESSION['proceso'] == "Salida")
+                        { ?>
+                      <?php }
+                      else
+                      { ?>
+                    <form method="post" action="../procesos/verificar_asistencia.php">
                             
                                 <input type="number" name="cedula" class="textbox" value="" required placeholder="Ingresa tu cedula">
                                 <div class="clear"> </div>
@@ -95,6 +117,7 @@ if(isset($_SESSION['user']))
                           <span><input type="submit" name="search" value="Aceptar"></span>
                           <div class="clear"></div>
                         </form>
+                    <?php } ?>
                   </div>
                 </div>
                  <div class="clear"></div>
