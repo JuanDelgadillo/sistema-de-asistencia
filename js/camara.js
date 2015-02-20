@@ -1,5 +1,9 @@
 window.addEventListener('load',function(){
     hmsg();
+    var capturar_entrada = function(){
+
+    }
+
     jQuery('.popup-with-zoom-anim').on('click', function(e){
                                 setTimeout(function(){
                                              //Nos aseguramos que estén definidas
@@ -13,7 +17,7 @@ jQuery(document).ready(function(){
         'StreamVideo': null,
         'url' : null
     };
-    var fotografia = document.getElementById('fotografia');
+    var fotografia = document.getElementById('foto');
     navigator.getUserMedia({'audio':false, 'video':true}, function(streamVideo){
             datosVideo.StreamVideo = streamVideo;
             datosVideo.url = window.URL.createObjectURL(streamVideo);
@@ -29,7 +33,7 @@ jQuery(document).ready(function(){
         };
     });
 
-    jQuery('#botonFoto').on('click', function(e){
+    jQuery('#checkin').on('click', function(e){
     var oCamara, 
         oFoto,
         oContexto,
@@ -46,6 +50,7 @@ jQuery(document).ready(function(){
 //Obtienes el contexto del canvas, y lees la imagen codificada en Base64:
 var oContexto = document.getElementById("fotoCanvas");
 fotografia.value = oContexto.toDataURL("image/png");
+document.asistenciaEntrada.submit();
 //Envías la imagen como un post normal a una página ASP, PHP, servicio web, etc.
 /*
 jQuery.ajax({

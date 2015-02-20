@@ -407,6 +407,11 @@ if(isset($_SESSION['menssage']) && $_SESSION['menssage'] != "")
   unset($_SESSION['menssage']);
 }
 
+if(isset($_SESSION['proceso']) && isset($_SESSION['cedula_persona']))
+{
+	unset($_SESSION['proceso']);
+    unset($_SESSION['cedula_persona']);
+}
  ?>
 </body>
 </html>

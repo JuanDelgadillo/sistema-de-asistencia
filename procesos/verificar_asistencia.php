@@ -25,27 +25,41 @@ if(isset($search))
 
     }
 
-    $verificar_asistencia = mysql_query("SELECT * FROM asistencia WHERE cedula = '$cedula' AND fecha = '$fecha' ");
+    $verificar_persona = mysql_query("SELECT * FROM persona WHERE cedula = '$cedula' ");
 
-    $persona = mysql_fetch_assoc($verificar_asistencia);
+    if(mysql_num_rows($verificar_persona) != 0)
+    {
+        $verificar_asistencia = mysql_query("SELECT * FROM asistencia WHERE cedula = '$cedula' AND fecha = '$fecha' ");
+        $persona = mysql_fetch_assoc($verificar_asistencia);
 
-    if($persona['verificacion_entrada'] == "Inasistente")
-    {
-        $_SESSION['cedula_persona'] = $cedula;
-        $_SESSION['proceso'] = "Entrada";
-        header("Location:../modulos/asistencia.php");
-    }
-    else if($persona['verificacion_salida'] == "Inasistente")
-    {
-        $_SESSION['cedula_persona'] = $cedula;
-        $_SESSION['proceso'] = "Salida";
-        header("Location:../modulos/asistencia.php");
+        if($persona['verificacion_entrada'] == "Inasistente")
+        {
+            $_SESSION['cedula_persona'] = $cedula;
+            $_SESSION['proceso'] = "Entrada";
+            header("Location:../modulos/asistencia.php");
+        }
+        else if($persona['verificacion_salida'] == "Inasistente")
+        {
+            $_SESSION['cedula_persona'] = $cedula;
+            $_SESSION['proceso'] = "Salida";
+            header("Location:../modulos/asistencia.php");
+        }
+        else
+        {
+            $_SESSION['menssage'] = "Ya registraste la entrada y salida del día de hoy.";
+            header("Location:../modulos/asistencia.php");
+        }
+        
     }
     else
     {
-        $_SESSION['menssage'] = "Ya registraste la entrada y salida del día de hoy.";
+        $_SESSION['menssage'] = "No existe una persona registrada en el sistema identificada con la cedula ".$cedula;
         header("Location:../modulos/asistencia.php");
     }
+
+
+
+   
 
 
 

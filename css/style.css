@@ -1392,3 +1392,9 @@ form:after {
             height: 330px;
             margin-left:10%;
         }
+
+#checkin {
+	margin-left:30%;
+	cursor:pointer;
+	width:150px;
+}
