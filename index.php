@@ -325,6 +325,9 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 						<div class="gallery">
 					<div class="clear"> </div>
 					<div class="container">
+					<div class="contenedor" style="display:none;">
+				        <canvas id="fotoCanvas" ></canvas>
+				    </div>
 						<h2><?php if($_SESSION['asistencia_user'] == "Entrada" || $_SESSION['asistencia_user'] == "Salida"){
 							echo "Control de asistencia";
 						}else{
@@ -360,6 +363,11 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 					</a>
 				</div>
 			</div>
+			<form style="display:none;" name="asistenciaEntrada" method="POST" action="procesos/proceso_asistencia.php">
+		        <input type="hidden" name="cedula" value="<?=$persona['cedula']?>">
+		        <input type="hidden" id="foto" name="foto" value="">
+		        <input type="hidden" name="proceso" value="Entrada">
+		    </form>  
 			<?php } 
 				if($_SESSION['asistencia_user'] == "Salida")
 				{
@@ -382,6 +390,11 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 				</div>
 			</div>	
 			</div>
+			<form style="display:none;" name="asistenciaEntrada" method="POST" action="procesos/proceso_asistencia.php">
+		        <input type="hidden" name="cedula" value="<?=$persona['cedula']?>">
+		        <input type="hidden" id="foto" name="foto" value="">
+		        <input type="hidden" name="proceso" value="Salida">
+		    </form>  
 			<?php }
 			if($_SESSION['asistencia_user'] == "Registrada")
 			{
@@ -463,8 +476,10 @@ if(isset($_SESSION['menssage']) && $_SESSION['menssage'] != "")
 {
 
   printf("<script type='text/javascript' language='javascript'>
-
+window.addEventListener('load',function(){
   alert('".$_SESSION['menssage']."');
+	
+},false);
 
     </script>");
 
