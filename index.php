@@ -3,6 +3,26 @@
 include_once "config/conection.php";
 
 session_start();
+if(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
+{
+	$fecha = date("Y-m-d");
+	$cedula = $_SESSION['cedula_user'];
+	$verificar_asistencia = mysql_query("SELECT * FROM asistencia, persona WHERE asistencia.cedula = '$cedula' AND asistencia.fecha = '$fecha' AND asistencia.cedula = persona.cedula ");
+	$persona = mysql_fetch_assoc($verificar_asistencia);
+
+	if($persona['verificacion_entrada'] == "Inasistente")
+    {
+        $_SESSION['asistencia_user'] = "Entrada";
+    }
+    else if($persona['verificacion_salida'] == "Inasistente")
+    {
+        $_SESSION['asistencia_user'] = "Salida";
+    }
+    else
+    {
+        $_SESSION['asistencia_user'] = "Registrada";
+    }
+}
 
 ?>
 <!DOCTYPE HTML>
@@ -280,19 +300,22 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 {
   ?>
   <script type="text/javascript" src="js/camara.js"></script>
-
   				<div id="small-dialog1" class="mfp-hide">
 							<div class="pop_up">
 								<h2>Registrar entrada</h2>
 								<video id="camara" autoplay></video>
 								<p class="para"><span id="hmsg"></span></p>
+								<br>
+                				<img id="checkin" title="Aceptar" src="images/checkin.png" alt="">
 							</div>
 						</div>
 						<div id="small-dialog2" class="mfp-hide">
 							<div class="pop_up">
 								<h2>Registrar Salida</h2>
-								<!-- <video id="camara" autoplay></video>-->
+								<video id="camara" autoplay></video>
 								<p class="para"><span id="hmsg"></span></p>
+								<br>
+                				<img id="checkin" title="Aceptar" src="images/checkin.png" alt="">
 							</div>
 						</div>
 <div class="wrap" id="portfolio">
@@ -302,7 +325,11 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 						<div class="gallery">
 					<div class="clear"> </div>
 					<div class="container">
-						<h2>Control de asistencia</h2>
+						<h2><?php if($_SESSION['asistencia_user'] == "Entrada" || $_SESSION['asistencia_user'] == "Salida"){
+							echo "Control de asistencia";
+						}else{
+							echo "Asistencia del día registrada";
+						} ?></h2>
 			<div id="portfoliolist">
 			
 			<div class="portfolio logo" data-cat="logo" >
@@ -313,7 +340,10 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 					</a>
 				</div>
 			</div>		
-				
+				<?php
+				if($_SESSION['asistencia_user'] == "Entrada")
+				{
+				?>
 			<div class="portfolio app" data-cat="app">
 				<div class="portfolio-wrapper" >			
 					<a class="popup-with-zoom-anim" href="#small-dialog1">
@@ -329,7 +359,11 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 						</ul>
 					</a>
 				</div>
-			</div>	
+			</div>
+			<?php } 
+				if($_SESSION['asistencia_user'] == "Salida")
+				{
+				?>	
 			<div class="hide">	
 			<div class="portfolio web" data-cat="web">
 				<div class="portfolio-wrapper">						
@@ -348,6 +382,36 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 				</div>
 			</div>	
 			</div>
+			<?php }
+			if($_SESSION['asistencia_user'] == "Registrada")
+			{
+			 ?>
+			 <div class="hide">	
+			<div class="portfolio web" data-cat="web">
+				<div class="portfolio-wrapper">						
+					<a href="#">
+						<ul class="ch-grid">
+							<li>
+								<div class="ch-item ch-img-7">
+									<div class="ch-info">
+										<img src="images/zoom-white.png"/>
+										<h3>Asistencia del día registrada</h3>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</a>
+				</div>
+			</div>	
+			</div>
+			 <?php } ?>
+<div>
+	<br><br>
+  Cedula: <?=$persona['cedula']?><br><br>
+  Nombre: <?=$persona['nombre']?><br><br>
+  Apellido: <?=$persona['apellido']?><br><br>
+  Fecha de Nacimiento: <?=$persona['fecha_nac']?>
+</div>
 			
 			<div class="portfolio card" data-cat="card">
 				<div class="portfolio-wrapper">			

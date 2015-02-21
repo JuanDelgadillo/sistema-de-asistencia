@@ -12,7 +12,7 @@ extract($_REQUEST);
 
 if(isset($search))
 {
-    $personas = mysql_query("SELECT * FROM persona");
+    $personas = mysql_query("SELECT * FROM persona WHERE cedula != 00000000 ");
     $fecha = date("Y-m-d");
     while($persona = mysql_fetch_assoc($personas))
     {

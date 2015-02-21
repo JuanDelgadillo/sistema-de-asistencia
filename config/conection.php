@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set("America/Caracas");
+
 $db   = "asistencia";
 $host = "localhost";
 $user = "root";
