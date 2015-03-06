@@ -195,6 +195,7 @@ table tr td {
                       <div id="auditoria">
         <table style="width:1300px; margin-top:0;" >
           <tr>
+            <th style="text-align:center;">Cedula</th>
             <th style="text-align:center;">Usuario</th>
             <th style="text-align:center;">Contraseña</th>
             <th style="text-align:center;">Tipo de usuario</th>
@@ -213,6 +214,7 @@ table tr td {
              elseif ($row['rol'] == 4) $rol = "Obrero(a)";
           ?>
           <tr>
+            <td style="text-align:center;"><?php if($row['id_user'] != 1){ ?><a href="registro_personal.php?cedula=<?=$row['cedula']?>" title=""><?=$row['cedula']?></a><?php }?></td>
             <td style="text-align:center;"><?=$row['user']?></td>
             <td style="text-align:center;"><?php for($i=0; $i < $contrasena; $i ++)    echo $lengpass; ?></td>
             <td style="text-align:center;"><?=$rol?></td>

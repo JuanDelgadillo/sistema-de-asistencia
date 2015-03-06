@@ -182,7 +182,7 @@ else
           if(isset($_GET['id']) && ! empty($_GET['id']) && $_GET['id'] != "")
           {
             $registro = $_GET['id'];
-            $student = mysql_fetch_assoc(mysql_query("SELECT * FROM users WHERE id_user = '$registro' "));
+            $student = mysql_fetch_assoc(mysql_query("SELECT * FROM users, roles WHERE users.id_user = '$registro' AND roles.rol = users.rol "));
           }
          ?>
 
@@ -194,10 +194,12 @@ else
             <div class="clear"> </div>
               <select name="rol" required>
                 <option value="">- Privilegio Administrativo -</option>
-                <option <? if(isset($student) && $student['rol'] == 1){ echo "SELECTED"; } ?> value="1">Administrador(a)</option>
-                <option <? if(isset($student) && $student['rol'] == 2){ echo "SELECTED"; } ?> value="2">Docente</option>
-                <option <? if(isset($student) && $student['rol'] == 3){ echo "SELECTED"; } ?> value="3">Administrativo(a)</option>
-                <option <? if(isset($student) && $student['rol'] == 4){ echo "SELECTED"; } ?> value="4">Obrero(a)</option>
+                <?php if(isset($student) && $student['rol'] == 1){ ?>
+                <option selected value="1">Administrador(a)</option>
+                <?php }elseif(isset($student) && $student['rol'] != 1){ ?>
+                <option value="1">Administrador(a)</option>
+                <option selected value="<?=$student['rol']?>"><?=$student['nombre_rol']?></option>
+                <?php } ?>
               </select>
             </p>
 

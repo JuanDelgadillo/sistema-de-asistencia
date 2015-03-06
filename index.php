@@ -7,7 +7,8 @@ if(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 {
 	$fecha = date("Y-m-d");
 	$cedula = $_SESSION['cedula_user'];
-	$verificar_asistencia = mysql_query("SELECT * FROM asistencia, persona WHERE asistencia.cedula = '$cedula' AND asistencia.fecha = '$fecha' AND asistencia.cedula = persona.cedula ");
+	$rol = $_SESSION['rol'];
+	$verificar_asistencia = mysql_query("SELECT * FROM asistencia, persona, roles WHERE asistencia.cedula = '$cedula' AND asistencia.fecha = '$fecha' AND asistencia.cedula = persona.cedula AND roles.rol = $rol ");
 	$persona = mysql_fetch_assoc($verificar_asistencia);
 
 	if($persona['verificacion_entrada'] == "Inasistente")
@@ -423,7 +424,8 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
   Cedula: <?=$persona['cedula']?><br><br>
   Nombre: <?=$persona['nombre']?><br><br>
   Apellido: <?=$persona['apellido']?><br><br>
-  Fecha de Nacimiento: <?=$persona['fecha_nac']?>
+  Fecha de Nacimiento: <?=$persona['fecha_nac']?><br><br>
+  Categoria: <?=$persona['nombre_rol']?>
 </div>
 			
 			<div class="portfolio card" data-cat="card">

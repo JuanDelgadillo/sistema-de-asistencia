@@ -19,6 +19,7 @@ if(isset($aceptar))
     if(mysql_num_rows($verificar_existencia) == 0)
     {
         $data_persona = mysql_query("INSERT INTO persona (cedula, nombre, apellido, sexo, fecha_nac, grado_instruccion) VALUES ('$cedula','$nombre','$apellido','$sexo','$fecha_nacimiento','$grado_instruccion')");
+        $password = base64_encode($cedula);
     }
     else
     {
@@ -29,16 +30,19 @@ if(isset($aceptar))
 
     if($categoria == "Administrativo")
     {
-        var_dump($_REQUEST);
         $data_administrativo = mysql_query("INSERT INTO administrativo (cedula, turno, especialidad, area) VALUES ('$cedula','$turno','$especialidad','$area')");
+        $user = mysql_query("INSERT INTO users (cedula, user, password, rol) VALUES ('$cedula','$cedula','$password', 3) ");
     }
     elseif($categoria == "Docente")
     {
         $data_docente = mysql_query("INSERT INTO docente (cedula, turno, especialidad, asignatura) VALUES ('$cedula','$turno','$especialidad','$asignatura')");
+        $user = mysql_query("INSERT INTO users (cedula, user, password, rol) VALUES ('$cedula','$cedula','$password', 2) ");
+
     }
     elseif($categoria == "Obrero")
     {
         $data_obrero = mysql_query("INSERT INTO docente (cedula, turno, area) VALUES ('$cedula','$turno','$area')");
+        $user = mysql_query("INSERT INTO users (cedula, user, password, rol) VALUES ('$cedula','$cedula','$password', 4) ");
     }
 
     $_SESSION['menssage'] = "La persona se ha registrado satisfactoriamente.";
