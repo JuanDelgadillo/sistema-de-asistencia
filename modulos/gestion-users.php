@@ -218,7 +218,7 @@ table tr td {
             <td style="text-align:center;"><?=$row['user']?></td>
             <td style="text-align:center;"><?php for($i=0; $i < $contrasena; $i ++)    echo $lengpass; ?></td>
             <td style="text-align:center;"><?=$rol?></td>
-            <td style="text-align:center;"><?php if($row['id_user'] != 1){ ?><a href="user.php?op=update-user&id=<?=$row['id_user']?>">Actualizar</a> - <a href="../procesos/delete.php?id=<?=$row['id_user']?>&tipo=user">Eliminar</a> <?php }?></td>
+            <td style="text-align:center;"><?php if($row['id_user'] != 1){ ?><a href="user.php?op=update-user&id=<?=$row['id_user']?>">Actualizar</a> - <a href="../procesos/delete.php?id=<?=$row['id_user']?>&tipo=user&cedula=<?=$row['cedula']?>">Eliminar</a> <?php }?></td>
           </tr>
          <?php } ?>
         </table>

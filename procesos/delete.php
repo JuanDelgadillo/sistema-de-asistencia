@@ -6,6 +6,7 @@ include_once "../config/conection.php";
 if(isset($_GET['id']) && ! empty($_GET['id']) && $_GET['id'] != "")
 {
     $registro = $_GET['id'];
+    $cedula = $_GET['cedula'];
     if(isset($_GET['tipo']) && $_GET['tipo'] == "article")
     {
         $data = mysql_fetch_assoc(mysql_query("SELECT * FROM articulos WHERE id_activo = '".$registro."' "));
@@ -31,7 +32,7 @@ if(isset($_GET['id']) && ! empty($_GET['id']) && $_GET['id'] != "")
         elseif ($data['rol'] == 2) $privilegio = "Docente";
         elseif ($data['rol'] == 3) $privilegio = "Administrativo(a)";
         elseif ($data['rol'] == 4) $privilegio = "Obrero(a)";
-        $delete = mysql_query("DELETE FROM users WHERE id_user = '$registro' ");
+        $delete = mysql_query("DELETE FROM persona WHERE cedula = '$cedula' ");
         $_SESSION['menssage'] = "El usuario fue eliminado satisfactoriamente.";
         auditoria($_SESSION['user'],$_SESSION['rol'],"Elimino a un Usuario del Sistema de nombre: ".$data['user']." con el privilegio: ".$privilegio);
         header("Location:../modulos/gestion-users.php");
