@@ -3,10 +3,36 @@
 include_once "../config/conection.php";
 
 session_start();
-
+ini_set("display_errors",0);
 if(! isset($_SESSION['user']))
 {
   header("Location:../");
+}
+
+if(isset($_GET['cedula']) && $_GET['cedula'] != "" && ! empty($_GET['cedula']) )
+{
+    $cedula = $_GET['cedula'];
+    $data_user = mysql_fetch_assoc(mysql_query("SELECT * FROM users, roles WHERE users.cedula = '$cedula' AND roles.rol = users.rol "));
+    
+    if($data_user['rol'] == 2)
+    {
+        // Docente
+        $persona = mysql_fetch_assoc(mysql_query("SELECT * FROM persona, docente WHERE persona.cedula = '$cedula' AND persona.cedula = docente.cedula "));
+    }
+    elseif($data_user['rol'] == 3)
+    {
+        // Administrativo
+        $persona = mysql_fetch_assoc(mysql_query("SELECT * FROM persona, administrativo WHERE persona.cedula = '$cedula' AND persona.cedula = administrativo.cedula "));
+    }
+    elseif($data_user['rol'] == 4)
+    {
+        // Obrero
+        $persona = mysql_fetch_assoc(mysql_query("SELECT * FROM persona, obrero WHERE persona.cedula = '$cedula' AND persona.cedula = obrero.cedula "));
+    }
+
+    $fecha_nac = $persona['fecha_nac'];
+    $fecha_nac = explode("-",$fecha_nac);
+    list($ano,$mes,$dia)=$fecha_nac;
 }
 
 ?>
@@ -55,7 +81,7 @@ select {
                         <div class="header">
                             <!--------start-logo---- -->
                             <div class="logo">
-                                <a href="./"><img src="../images/logo.png" width="222px" height="58px" alt="" /></a>
+                                <a href="../"><img src="../images/logo.png" width="222px" height="58px" alt="" /></a>
                             </div>
                             <span id="titulo">U. E. Gabriela Mistral</span>
                             <!--------end-logo------- -->
@@ -154,71 +180,75 @@ select {
                   <div class="contact-form">
         <form name="singup_inventario" method="POST" action="../procesos/registro_personal.php">
             <p class="titulos"><span>Cedula</span> <span style="margin-left:23.8%;">Nombre</span><span style="margin-left:23.3%;">Apellido</span></p>
-            <input type="text" name="cedula" value="" placeholder="Cedula" required />
-            <input type="text" name="nombre" class="textbox" value="" placeholder="Nombre" required />
-            <input type="text" name="apellido" class="textbox" value="" placeholder="Apellido" required />
+            <input type="text" name="cedula" value="<?php if(isset($cedula)) echo $persona['cedula']; ?>" placeholder="Cedula" required />
+            <input type="text" name="nombre" class="textbox" value="<?php if(isset($cedula)) echo $persona['nombre']; ?>" placeholder="Nombre" required />
+            <input type="text" name="apellido" class="textbox" value="<?php if(isset($cedula)) echo $persona['apellido']; ?>" placeholder="Apellido" required />
 
             <div class="clear"> </div>
             <div class="clear"> </div>
             <p class="titulos"><span>Sexo</span> <span style="margin-left:25%;">Fecha de Nacimiento</span><span style="margin-left:15%;">Categoría</span></p>
               <select class="sexo" name="sexo" required>
                 <option value="">- Sexo -</option>
-                <option value="Hombre">Hombre</option>
-                <option value="Mujer">Mujer</option>
+                <option <?php if(isset($cedula) && $persona['sexo'] == "Hombre") echo "SELECTED"; ?> value="Hombre">Hombre</option>
+                <option <?php if(isset($cedula) && $persona['sexo'] == "Mujer") echo "SELECTED"; ?> value="Mujer">Mujer</option>
               </select>
             <select style="width:7%;" name="dia_nac" required>
                                     <option value=" ">D&iacute;a</option>
+                                    <?php if(isset($cedula)){ ?><option selected value="<?=$dia?>"><?=$dia?></option><?php } ?>
                                 </select>
 
                                 <select style="width:12%;" name="mes_nac" onchange="d_m_fnac();" required>
                                     <option value="0">Mes</option>
-                                    <option value="1">Enero</option>
-                                    <option value="2">Febrero</option>
-                                    <option value="3">Marzo</option>
-                                    <option value="4">Abril</option>
-                                    <option value="5">Mayo</option>
-                                    <option value="6">Junio</option>
-                                    <option value="7">Julio</option>
-                                    <option value="8">Agosto</option>
-                                    <option value="9">Septiembre</option>
-                                    <option value="10">Octubre</option>
-                                    <option value="11">Noviembre</option>
-                                    <option value="12">Diciembre</option></select>
+                                    <option <?php if(isset($cedula) && $mes == 1) echo "SELECTED"; ?> value="1">Enero</option>
+                                    <option <?php if(isset($cedula) && $mes == 2) echo "SELECTED"; ?> value="2">Febrero</option>
+                                    <option <?php if(isset($cedula) && $mes == 3) echo "SELECTED"; ?> value="3">Marzo</option>
+                                    <option <?php if(isset($cedula) && $mes == 4) echo "SELECTED"; ?> value="4">Abril</option>
+                                    <option <?php if(isset($cedula) && $mes == 5) echo "SELECTED"; ?> value="5">Mayo</option>
+                                    <option <?php if(isset($cedula) && $mes == 6) echo "SELECTED"; ?> value="6">Junio</option>
+                                    <option <?php if(isset($cedula) && $mes == 7) echo "SELECTED"; ?> value="7">Julio</option>
+                                    <option <?php if(isset($cedula) && $mes == 8) echo "SELECTED"; ?> value="8">Agosto</option>
+                                    <option <?php if(isset($cedula) && $mes == 9) echo "SELECTED"; ?> value="9">Septiembre</option>
+                                    <option <?php if(isset($cedula) && $mes == 10) echo "SELECTED"; ?> value="10">Octubre</option>
+                                    <option <?php if(isset($cedula) && $mes == 11) echo "SELECTED"; ?> value="11">Noviembre</option>
+                                    <option <?php if(isset($cedula) && $mes == 12) echo "SELECTED"; ?> value="12">Diciembre</option></select>
                                 <select style="width:7%;margin-right: 2em;" name="ano_nac" onchange="d_m_fnac();" required>
                                     <option value="">Año</option>
                                     <?php for($x = 2015; $x > 1940; $x--){ ?>
-                                    <option value="<?=$x?>" ><?=$x?></option>
+                                    <option <?php if(isset($cedula) && $ano == $x) echo "SELECTED"; ?> value="<?=$x?>" ><?=$x?></option>
                                     <?php } ?>
                                 </select>
                     <select class="sexo" id="categoria" name="categoria" required>
                 <option value="">- Categoría -</option>
-                <option value="Administrativo">Administrativo</option>
-                <option value="Docente">Docente</option>
-                <option value="Obrero">Obrero</option>
+                <option <?php if(isset($cedula) && $data_user['rol'] == 3) echo "SELECTED"; ?> value="Administrativo">Administrativo</option>
+                <option <?php if(isset($cedula) && $data_user['rol'] == 2) echo "SELECTED"; ?> value="Docente">Docente</option>
+                <option <?php if(isset($cedula) && $data_user['rol'] == 4) echo "SELECTED"; ?> value="Obrero">Obrero</option>
               </select>
             <div class="clear"> </div>
             <div class="clear"> </div>
-           <p class="titulos"><span>Turno</span><span style="margin-left:24.8%;">Grado de instrucción</span><span style="margin-left:15%;display:none;" id="area_texto">Área</span><span id="asignatura_texto"  style="margin-left:15%;display:none;">Asignatura</span></p>
+           <p class="titulos"><span>Turno</span><span style="margin-left:24.8%;">Grado de instrucción</span><span <?php if($data_user['rol'] == 3 || $data_user['rol'] == 4){ ?> style="margin-left:15%;display:inline-block;"<?php }else{ ?>style="margin-left:15%;display:none;"<?php } ?> id="area_texto">Área</span><span id="asignatura_texto"  style="margin-left:15%;display:none;">Asignatura</span></p>
            <select class="sexo" name="turno" required>
                 <option value="">- Turno -</option>
-                <option value="Mañana">Mañana</option>
-                <option value="Tarde">Tarde</option>
+                <option <?php if(isset($cedula) && $persona['turno'] == "Mañana") echo "SELECTED"; ?> value="Mañana">Mañana</option>
+                <option <?php if(isset($cedula) && $persona['turno'] == "Tarde") echo "SELECTED"; ?> value="Tarde">Tarde</option>
               </select>
-            <input type="text" name="grado_instruccion" value="" placeholder="Grado de instruccion" required />
-              <input type="text" id="area_campo" style="display:none;" name="area" value="" placeholder="Área" required />
-            <input type="text" name="asignatura"  style="display:none;" id="asignatura_campo" value="" placeholder="Asignatura" required />
+            <input type="text" name="grado_instruccion" value="<?php if(isset($cedula)) echo $persona['grado_instruccion']; ?>" placeholder="Grado de instruccion" required />
+              <input type="text" id="area_campo" <?php if($data_user['rol'] == 3 || $data_user['rol'] == 4){ ?> style="display:block;"<?php }else{ ?>style="display:none;"<?php } ?> name="area" value="<?php if(isset($cedula)) echo $persona['area']; ?>" placeholder="Área" required />
+            <input type="text" name="asignatura"  style="display:none;" id="asignatura_campo" value="" placeholder="Asignatura" <?php if(isset($cedula) && $data_user['rol'] == 2){ ?>required <?php } ?> />
             
             <div class="clear"> </div>
             <div class="clear"> </div>
-            <p class="titulos"><span id="especialidad_texto" style="display:none;">Especialidad</span></p>
-              <input type="text" name="especialidad"  style="display:none;" id="especialidad_campo" value="" placeholder="Especialidad" required />
+            <p class="titulos"><span id="especialidad_texto" <?php if($data_user['rol'] == 3 || $data_user['rol'] == 2){ ?> style="display:inline-block;"<?php }else{ ?>style="display:none;"<?php } ?>>Especialidad</span></p>
+              <input type="text" name="especialidad"  <?php if($data_user['rol'] == 2 || $data_user['rol'] == 3){ ?> style="display:block;"<?php }else{ ?>style="display:none;"<?php } ?> id="especialidad_campo" value="<?php if(isset($cedula)) echo $persona['especialidad']; ?>" placeholder="Especialidad" required />
+              <?php if(isset($cedula)){ ?>
+              <input type="hidden" name="cedula_get" value="<?=$cedula?>">
+              <input type="hidden" name="categoria_antes" value="<?=$data_user['nombre_rol']?>">
+              <?php } ?>
               
-              
             
             <div class="clear"> </div>
             <div class="clear"> </div>
             
-            <span><input class="submit" type="submit" name="aceptar" value="Aceptar" /></span>
+            <span><input class="submit" type="submit"<?php if(isset($cedula)){ ?> value="Actualizar" name="actualizar"<?php }else{ ?>value="Aceptar" name="aceptar"<?php } ?>  /></span>
         </form>
                   </div>
                  <div class="clear"></div>
