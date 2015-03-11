@@ -13,7 +13,7 @@ if(isset($_SESSION['proceso']) && $_SESSION['proceso'] == "Entrada")
 {
   $titulo = "Registrar asistencia de entrada";
   $cedula = $_SESSION['cedula_persona'];
-  $persona = mysql_fetch_assoc(mysql_query("SELECT * FROM persona WHERE cedula = '$cedula' "));
+  $persona = mysql_fetch_assoc(mysql_query("SELECT * FROM persona, users, roles WHERE persona.cedula = '$cedula' AND users.cedula = persona.cedula AND users.rol = roles.rol "));
 }
 elseif(isset($_SESSION['proceso']) && $_SESSION['proceso'] == "Salida")
 {
@@ -144,7 +144,7 @@ else
             <div class="header">
               <!--------start-logo---- -->
               <div class="logo">
-                <a href="../"><img src="../images/logo.png" width="222px" height="58px" alt="" /></a>
+                <a href="./"><img src="../images/insignia.png" width="132px" height="88px" alt="" /></a>
               </div>  
               <span id="titulo">U. E. Gabriela Mistral</span>
               <!--------end-logo------- -->
@@ -248,7 +248,7 @@ else
   Cedula: <?=$persona['cedula']?><br><br>
   Nombre: <?=$persona['nombre']?><br><br>
   Apellido: <?=$persona['apellido']?><br><br>
-  Fecha de Nacimiento: <?=$persona['fecha_nac']?>
+  Categoria: <?=$persona['nombre_rol']?>
 </span>
     </div>
     </div>

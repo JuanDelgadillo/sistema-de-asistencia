@@ -126,7 +126,7 @@ if(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
 						<div class="header">
 							<!--------start-logo---- -->
 							<div class="logo">
-								<a href="./"><img src="images/logo.png" width="222px" height="58px" alt="" /></a>
+								<a href="./"><img src="images/insignia.png" width="132px" height="88px" alt="" /></a>
 							</div>	
 							<span id="titulo">U. E. Gabriela Mistral</span>
 							<!--------end-logo------- -->
@@ -424,7 +424,6 @@ elseif(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
   Cedula: <?=$persona['cedula']?><br><br>
   Nombre: <?=$persona['nombre']?><br><br>
   Apellido: <?=$persona['apellido']?><br><br>
-  Fecha de Nacimiento: <?=$persona['fecha_nac']?><br><br>
   Categoria: <?=$persona['nombre_rol']?>
 </div>
 			

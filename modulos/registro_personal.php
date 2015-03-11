@@ -81,8 +81,8 @@ select {
                         <div class="header">
                             <!--------start-logo---- -->
                             <div class="logo">
-                                <a href="../"><img src="../images/logo.png" width="222px" height="58px" alt="" /></a>
-                            </div>
+                                <a href="./"><img src="../images/insignia.png" width="132px" height="88px" alt="" /></a>
+                            </div>  
                             <span id="titulo">U. E. Gabriela Mistral</span>
                             <!--------end-logo------- -->
                             <!----start-nav------ -->   
