@@ -141,7 +141,7 @@ if(isset($_SESSION['user']) && $_SESSION['rol'] != 1)
               ?>
 								   <li><a href="modulos/user.php" ><?=$_SESSION['user']?></a></li>
 								   <li class="close"><a href="procesos/salir.php" >Cerrar sesión</a></li>
-			<?
+			<?php
             }else{
 
             ?>
@@ -188,7 +188,7 @@ if(! isset($_SESSION['user']))
 	</section>
 				</div>
 				<!---//End-da-slider--- -->
- <?
+ <?php
 }
 
 ?>						

@@ -22,7 +22,7 @@ $consulta = mysql_query("SELECT * FROM auditoria ORDER BY fecha DESC");
             <th style="text-align:center;background-color:gray;">Operaci&oacute;n</th>
             <th style="text-align:center;background-color:gray;">Fecha - Hora</th>
           </tr>
-  <? while($row = mysql_fetch_assoc($consulta))
+  <?php while($row = mysql_fetch_assoc($consulta))
   {
     ?>
           <tr>
@@ -31,6 +31,6 @@ $consulta = mysql_query("SELECT * FROM auditoria ORDER BY fecha DESC");
             <td><?=utf8_decode($row['operacion'])?></td>
             <td><?=utf8_decode($row['fecha'])?></td>
           </tr>
-    <?
+    <?php
   } ?>
     </table>

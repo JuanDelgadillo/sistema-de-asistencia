@@ -138,7 +138,7 @@ else
               ?>
                                    <li class="active"><a href="" ><?=$_SESSION['user']?></a></li>
                                    <li class="close"><a href="../procesos/salir.php" >Cerrar sesión</a></li>
-            <?
+            <?php
             }
 
             ?>
