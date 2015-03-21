@@ -235,7 +235,7 @@ if(isset($_SESSION['user']) && $_SESSION['rol'] == 1)
 				
 			<div class="portfolio app" data-cat="app">
 				<div class="portfolio-wrapper">			
-					<a class="popup-with-zoom-anim" href="#small-dialog2">
+					<a href="modulos/reportes.php">
 						<ul class="ch-grid">
 							<li>
 								<div class="ch-item ch-img-2">
