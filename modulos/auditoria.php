@@ -53,7 +53,38 @@ table tr td {
         margin:0 auto;
         }
 
+.submit 
+{
+  font-family: 'Lato', sans-serif;
+  color:#fff;
+  padding: 0.8em 1.5em;
+  background: #1BBC9B;
+  border:1px solid #1BBC9B;
+  display: block;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+  font-size: 1em;
+  outline: none;
+  text-transform: uppercase;
+  margin-left: 10%; 
+}
+
   </style>
+
+    <script>
+
+    window.addEventListener("load",function(){
+      exportar.addEventListener('click',function(){
+        window.location='../procesos/export.php';
+      },false);
+    },false);
+
+    </script>
+
     <script type="text/javascript" src="../js/jquery.easing.min.js"></script>  
     <script type="text/javascript" src="../js/jquery.mixitup.min.js"></script>
 </head>
@@ -128,7 +159,7 @@ table tr td {
           </tr>
           <?php
 
-          $activos = mysql_query("SELECT * FROM auditoria  ORDER BY fecha DESC");
+          $activos = mysql_query("SELECT * FROM auditoria ORDER BY fecha DESC");
 
           while ($row = mysql_fetch_assoc($activos))
           {
@@ -145,10 +176,10 @@ table tr td {
                 </div>
                  <div class="clear"></div>
               </div>
-              </div>
-              <span><input class="submit" type="submit" value="Aceptar" name="aceptar" /></span>
+              </div><br>
+              <span><input class="submit" id="exportar" type="button" value="Exportar" name="aceptar" /></span>
+        <br/><br/>
         </div>
-        <br/><br/><br/><br/>
      <div class="footer-bottom">
         <div class="wrap">
         <div class="copy">
